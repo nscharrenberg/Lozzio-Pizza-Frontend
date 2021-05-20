@@ -47,37 +47,39 @@ export const ShoppingCart = ({pizzasInCard, removeFromCard, addToCard}) => {
     return (
         <div className={classes.root}>
             <TableContainer component={Paper}>
-                <Table className={classes.table} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell align="right">Vegetarian</TableCell>
-                            <TableCell align="right">Price</TableCell>
-                            <TableCell align="right">Amount</TableCell>
-                            <TableCell align="right">Actions</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {Object.entries(groupByPizzaId(pizzasInCard)).map((entry, index) => (
-                            <TableRow key={"checkout-pizzas-" + entry[0]}>
-                                <TableCell component="th" scope="row">
-                                    {entry[1][0].name}
-                                </TableCell>
-                                <TableCell align="right">{entry[1][0].vegetarian ? 'Yes' : 'No'}</TableCell>
-                                <TableCell align="right">{entry[1][0].price.toFixed(2)}</TableCell>
-                                <TableCell align="right">{entry[1].length}</TableCell>
-                                <TableCell align="right">
-                                    <IconButton color="primary"  aria-label="Add to Cart" onClick={() => addToCard(entry[1][0])}>
-                                        <AddCircleIcon />
-                                    </IconButton>
-                                    <IconButton color="secondary"  aria-label="Remove from Cart" onClick={() => removeFromCard(entry[1][0])}>
-                                        <RemoveCircleIcon />
-                                    </IconButton>
-                                </TableCell>
+                <div>
+                    <Table className={classes.table} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Name</TableCell>
+                                <TableCell align="right">Vegetarian</TableCell>
+                                <TableCell align="right">Price</TableCell>
+                                <TableCell align="right">Amount</TableCell>
+                                <TableCell align="right">Actions</TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
+                        </TableHead>
+                        <TableBody>
+                            {Object.entries(groupByPizzaId(pizzasInCard)).map((entry, index) => (
+                                <TableRow key={"checkout-pizzas-" + entry[0]}>
+                                    <TableCell component="th" scope="row">
+                                        {entry[1][0].name}
+                                    </TableCell>
+                                    <TableCell align="right">{entry[1][0].vegetarian ? 'Yes' : 'No'}</TableCell>
+                                    <TableCell align="right">{entry[1][0].price.toFixed(2)}</TableCell>
+                                    <TableCell align="right">{entry[1].length}</TableCell>
+                                    <TableCell align="right">
+                                        <IconButton color="primary"  aria-label="Add to Cart" onClick={() => addToCard(entry[1][0])}>
+                                            <AddCircleIcon />
+                                        </IconButton>
+                                        <IconButton color="secondary"  aria-label="Remove from Cart" onClick={() => removeFromCard(entry[1][0])}>
+                                            <RemoveCircleIcon />
+                                        </IconButton>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </div>
             </TableContainer>
             <Typography variant={"h6"} align="right" className={classes.price}>
                 Price: {calculatePrice()}

@@ -2,16 +2,16 @@ import Types from './types';
 
 const initialState = {
     order: {
-        customer_id: undefined,
+        customer_id: 69420,
         takeaway: false,
         payment_type: "cash",
         delivery_address: {
-            street: undefined,
-            city: undefined,
-            country: undefined,
-            zipcode: undefined
+            street: "",
+            city: "",
+            country: "",
+            zipcode: ""
         },
-        note: undefined,
+        note: "",
         pizzas: []
     },
     pizzasInCard: [],
@@ -55,6 +55,11 @@ const reducer = (state = initialState, { type, payload }) => {
                 ...state,
                 order: initialState.order,
                 pizzasInCard: [],
+            };
+        case Types.UPDATE_ORDER:
+            return {
+                ...state,
+                order: payload,
             };
         case Types.CLEAR_CARD:
             return {

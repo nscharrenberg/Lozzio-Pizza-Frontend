@@ -52,6 +52,10 @@ const deliveryTime = () => (dispatch, getState) => {
     });
 };
 
+const updateOrder = (order) => (dispatch) => {
+  dispatch(Actions.updateOrder(order));
+};
+
 const clearCard = () => (dispatch) => {
     dispatch(Actions.clearCard());
 };
@@ -63,5 +67,6 @@ export {
     cancelOrder,
     removeFromCard,
     deliveryTime,
-    clearCard
+    clearCard,
+    updateOrder
 };

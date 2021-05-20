@@ -27,6 +27,11 @@ const reset = () => ({
     type: Types.RESET
 });
 
+const updateOrder = (order) => ({
+    type: Types.UPDATE_ORDER,
+    payload: order,
+});
+
 export {
     setOrder,
     makeOrder,
@@ -34,4 +39,5 @@ export {
     removeFromCard,
     clearCard,
     reset,
+    updateOrder,
 };

@@ -62,6 +62,7 @@ const mapStateToProps = ({ pizzas, orders }) => ({
     pizzas: pizzas.pizzas,
     loading: pizzas.loading,
     pizzasInCard: orders.pizzasInCard,
+    order: orders.order,
 });
 
 const mapDispatchToProps = dispatch => {

@@ -7,7 +7,10 @@ const getOrderApiService = () => {
     const getOrder = async (id) => {
         const url = `${baseUrl}/order/${id}`;
         const options = {
-            method: 'GET'
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
         };
 
         const response = await apiService.request(url, options);
@@ -29,6 +32,9 @@ const getOrderApiService = () => {
         const url = `${baseUrl}/order`;
         const options = {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(body),
         };
 
@@ -50,6 +56,9 @@ const getOrderApiService = () => {
         const url = `${baseUrl}/order/cancel/${id}`;
         const options = {
             method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
         };
 
         const response = await apiService.request(url, options);
@@ -74,6 +83,9 @@ const getOrderApiService = () => {
         const url = `${baseUrl}/order/deliverytime/${id}`;
         const options = {
             method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
         };
 
         const response = await apiService.request(url, options);

@@ -8,7 +8,10 @@ const getPizzaApiService = () => {
       const url = `${baseUrl}/pizza`;
 
       const options = {
-          method: 'GET'
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json'
+          },
       };
 
         const response = await apiService.request(url, options);
@@ -25,7 +28,10 @@ const getPizzaApiService = () => {
     const getPizza = async (id) => {
         const url = `${baseUrl}/pizza/${id}`;
         const options = {
-            method: 'GET'
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
         };
 
         const response = await apiService.request(url, options);
