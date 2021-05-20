@@ -14,8 +14,14 @@ const reset = () => ({
     type: Types.RESET
 });
 
+const setLoading = (isLoading) => ({
+    type: Types.LOADING,
+    payload: isLoading
+});
+
 export {
     setPizza,
     setPizzas,
     reset,
+    setLoading,
 };

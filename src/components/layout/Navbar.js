@@ -7,6 +7,10 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import LocalPizzaIcon from "@material-ui/icons/LocalPizza";
 import Button from "@material-ui/core/Button";
+import Badge from "@material-ui/core/Badge";
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import {Link} from "react-router-dom";
+import routes from "../../router/routes";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -20,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const Navbar = ({loading}) => {
+export const Navbar = ({loading, pizzasInCard}) => {
     const classes = useStyles();
 
     return (
@@ -35,16 +39,22 @@ export const Navbar = ({loading}) => {
                         Lozzio Pizza
                     </Typography>
 
-                    <Button href="/" color="inherit">Menu</Button>
-                    <Button href="/history" color="inherit">Order History</Button>
+                    <Button component={Link} to={routes.menuPath} color="inherit">Menu</Button>
+                    <Button component={Link} to={routes.historyPath} color="inherit">Order History</Button>
+                    <IconButton component={Link} to={routes.checkoutPath} color="inherit" aria-label="cart">
+                        <Badge badgeContent={pizzasInCard.length} color="secondary">
+                            <ShoppingCartIcon />
+                        </Badge>
+                    </IconButton>
                 </Toolbar>
             </AppBar>
         </div>
     )
 };
 
-const mapStateToProps = ({ pizzas }) => ({
+const mapStateToProps = ({ pizzas, orders }) => ({
    loading: pizzas.loading,
+   pizzasInCard: orders.pizzasInCard,
 });
 
 export default connect(mapStateToProps)(Navbar);

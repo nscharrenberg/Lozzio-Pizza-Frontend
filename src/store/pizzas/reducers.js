@@ -22,6 +22,11 @@ const reducer = (state = initialState, { type, payload }) => {
             };
         case Types.RESET:
             return initialState;
+        case Types.LOADING:
+            return {
+                ...state,
+                loading: payload
+            };
         default:
             return state;
     }

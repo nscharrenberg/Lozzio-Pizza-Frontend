@@ -4,9 +4,11 @@ import * as Actions from './actions';
 const getPizzas = () => (dispatch) => {
   const pizzaService = getPizzaApiService();
 
+  dispatch(Actions.setLoading(true));
+
   return pizzaService.getPizzas().then(pizzas => {
       dispatch(Actions.setPizzas(pizzas));
-
+      dispatch(Actions.setLoading(false));
       return pizzas;
   });
 };

@@ -2,5 +2,6 @@
 export default {
     SET_PIZZAS: 'SET_PIZZAS',
     SET_PIZZA: 'SET_PIZZA',
-    RESET: 'RESET'
+    RESET: 'RESET',
+    LOADING: 'LOADING'
 }

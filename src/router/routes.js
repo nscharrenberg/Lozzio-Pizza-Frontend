@@ -7,3 +7,5 @@ const routes = {
   historyPath,
   checkoutPath
 };
+
+export default routes;
