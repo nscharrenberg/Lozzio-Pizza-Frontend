@@ -1,6 +1,7 @@
 import {getOrderApiService} from "../../services";
 import * as Actions from './actions';
 import * as AlertActions from '../alerts';
+import getApiService from "../../services/apiService";
 
 const getOrder = (id) => (dispatch) => {
     const orderService = getOrderApiService;
@@ -40,13 +41,43 @@ const removeFromCard = (pizza) => (dispatch) => {
 };
 
 const cancelOrder = () => (dispatch, getState) => {
-    const orderService = getOrderApiService();
+    const apiService = getApiService();
 
     const { selected } = getState().orders;
 
-    return orderService.cancelOrder(selected.order_id).then(order => {
-        dispatch(Actions.setOrder(order));
+    const { order_id } = selected;
+
+    const url = `${apiService.baseUrl}/order/cancel/${order_id}`;
+    const options = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    };
+
+    apiService.request(url, options).then(response => {
+        if (!response.ok) {
+            let message = "Unable to cancel order";
+            if (response.status === 412) {
+                message = "unable to cancel your order after 5 minutes have elapsed.";
+            } else if (response.status === 422) {
+                message = "Unable to cancel an already canceled or delivered order";
+            } else if (response.stats === 404) {
+                message = "Order could not be found";
+            }
+
+            dispatch(AlertActions.Actions.showError(message));
+            return;
+        }
+
+        response.json().then(order => {
+            dispatch(Actions.setOrder(order));
+
+            dispatch(AlertActions.Actions.showSuccess("Order has been cancelled."));
+        });
     });
+
+
 };
 
 const deliveryTime = () => (dispatch, getState) => {

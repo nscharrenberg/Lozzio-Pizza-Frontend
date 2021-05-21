@@ -52,7 +52,7 @@ const getOrderApiService = () => {
         return response.json();
     };
 
-    const cancelOrder = async(id) => {
+    const cancelOrder = async (id) => {
         const url = `${baseUrl}/order/cancel/${id}`;
         const options = {
             method: 'PUT',
@@ -73,7 +73,7 @@ const getOrderApiService = () => {
                 message = "Order could not be found";
             }
 
-            throw new Error(message);
+            await Promise.reject(message);
         }
 
         return response.json();
