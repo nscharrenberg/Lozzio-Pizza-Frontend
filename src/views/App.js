@@ -1,8 +1,9 @@
 import React from 'react';
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import Navbar from "../components/layout/Navbar";
 import Router from "../router/router";
+import Alerts from "../components/alerts/Alerts";
 
 
 const App = () => (
@@ -10,8 +11,10 @@ const App = () => (
         <CssBaseline/>
         <div className="app">
             <Navbar/>
+            <Router/>
+            <Alerts/>
         </div>
-        <Router/>
+
     </BrowserRouter>
     );
 

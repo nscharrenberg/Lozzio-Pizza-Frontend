@@ -14,6 +14,9 @@ const useStyles = makeStyles(theme => ({
         paddingBottom: theme.spacing(2),
         paddingRight: theme.spacing(2),
     },
+    root: {
+        marginTop: theme.spacing(1),
+    }
 }));
 
 export const PersonalInfo = ({updateOrder, order}) => {
@@ -34,7 +37,7 @@ export const PersonalInfo = ({updateOrder, order}) => {
     };
 
     return (
-        <Paper>
+        <Paper className={classes.root}>
             <div>
                 <form className={classes.form} noValidate autoComplete="off">
                     <Grid container spacing={3}>

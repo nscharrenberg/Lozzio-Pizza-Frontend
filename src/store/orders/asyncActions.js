@@ -1,5 +1,6 @@
 import {getOrderApiService} from "../../services";
 import * as Actions from './actions';
+import * as AlertActions from '../alerts';
 
 const getOrder = (id) => (dispatch) => {
     const orderService = getOrderApiService;
@@ -21,7 +22,13 @@ const makeOrder = () => (dispatch, getState) => {
 
       dispatch(Actions.makeOrder());
       dispatch(Actions.setOrder(order));
-  })
+
+      dispatch(AlertActions.Actions.showSuccess("Order has been created."));
+
+      return order;
+  }).catch(err => {
+      dispatch(AlertActions.Actions.showError("Unable to place order."));
+  });
 };
 
 const addToCard = (pizza) => (dispatch) => {

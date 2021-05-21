@@ -13,10 +13,12 @@ import PersonalInfo from "../../components/checkout/PersonalInfo";
 import DeliveryInfo from "../../components/checkout/DeliveryInfo";
 import Alert from '@material-ui/lab/Alert';
 import {isEmpty, isNil} from "ramda";
+import Order from "../../components/orders/Order";
 
 const useStyles = makeStyles(theme => ({
     root: {
-        padding: theme.spacing(2)
+        padding: theme.spacing(2),
+        marginTop: theme.spacing(1),
     },
     content: {
         marginTop: theme.spacing(2)
@@ -47,7 +49,7 @@ const useStyles = makeStyles(theme => ({
         marginRight: theme.spacing(1),
     },
     instructions: {
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(2),
         marginBottom: theme.spacing(2),
     },
 }));
@@ -140,9 +142,8 @@ const Checkout = ({ getPizzas, order, pizzasInCard, makeOrder, updateOrder }) =>
             </Stepper>
             <div>
                 {activeStep === steps.length ? (
-                    <div>
-                        <Typography className={classes.instructions}>All steps completed</Typography>
-                        <Button onClick={handleReset}>Reset</Button>
+                    <div className={classes.instructions}>
+                        <Order/>
                     </div>
                 ) : (
                     <div>
