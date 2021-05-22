@@ -4,7 +4,9 @@ import { routes } from "./";
 import History from "../views/History/History";
 import Home from "../views/Home/Home";
 import Checkout from "../views/Order/Checkout";
-import FindOrder from "../views/Order/FindOrder";
+import SearchOrder from "../views/Order/SearchOrder";
+import GetOrder from "../views/Order/GetOrder";
+import ChangeApi from "../views/Api/ChangeApi";
 
 const Router = () => {
     return (
@@ -18,9 +20,11 @@ const Router = () => {
             <Route path={routes.checkoutPath}
                    exact component={Checkout} />
             <Route path={routes.orderIdPath}
-                   component={FindOrder}/>
+                   component={GetOrder}/>
             <Route path={routes.orderPath}
-                   exact component={FindOrder}/>
+                   exact component={SearchOrder}/>
+            <Route path={routes.apiPath}
+                   exact component={ChangeApi}/>
 
         </Switch>
     );

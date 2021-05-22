@@ -41,54 +41,38 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const Checkout = ({ order, getOrder, clearOrder }) => {
+const SearchOrder = ({ order, getOrder, clearOrder }) => {
     const classes = useStyles();
     const [orderId, setOrderId] = useState("");
 
-    let { id } = useParams();
     const history = useHistory();
-
-    useEffect(() => {
-        if (!isNil(id)) {
-            getOrder(id);
-        } else {
-            clearOrder();
-        }
-    }, []);
 
     const refresh = () => {
         history.push(routes.orderPath + "/" + orderId);
-        history.go();
     };
 
     return (
         <Container className={classes.root}>
-            {
-                order ? (<Order/>) : (
-                    <div>
-                        <Typography variant={"h5"}>
-                            Find the status of your order!
-                        </Typography>
+            <Typography variant={"h5"}>
+                Find the status of your order!
+            </Typography>
 
-                        <Paper component="form" className={classes.search}>
-                        <InputBase
-                            className={classes.input}
-                            placeholder="Search Order By ID"
-                            value={orderId}
-                            onChange={(e) => setOrderId(e.target.value)}
-                        />
-                        <IconButton className={classes.iconButton} aria-label="search" onClick={refresh}>
-                            <SearchIcon />
-                        </IconButton>
-                    </Paper>
-                    </div>
-                )
-            }
+            <Paper component="form" className={classes.search}>
+                <InputBase
+                    className={classes.input}
+                    placeholder="Search Order By ID"
+                    value={orderId}
+                    onChange={(e) => setOrderId(e.target.value)}
+                />
+                <IconButton className={classes.iconButton} aria-label="search" onClick={refresh}>
+                    <SearchIcon />
+                </IconButton>
+            </Paper>
         </Container>
     );
 };
 
-const mapStateToProps = ({ pizzas, orders }) => ({
+const mapStateToProps = ({ orders }) => ({
     order: orders.selected,
 });
 
@@ -102,4 +86,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchOrder);

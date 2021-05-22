@@ -1,12 +1,13 @@
-import {getOrderApiService} from "../../services";
 import * as Actions from './actions';
 import * as AlertActions from '../alerts';
 import getApiService from "../../services/apiService";
 
-const getOrder = (id) => (dispatch) => {
+const getOrder = (id) => (dispatch, getState) => {
     const apiService = getApiService();
 
-    const url = `${apiService.baseUrl}/order/${id}`;
+    const { apis } = getState();
+
+    const url = `${apis.baseUrl}/order/${id}`;
     const options = {
         method: 'GET',
         headers: {
@@ -37,8 +38,9 @@ const makeOrder = () => (dispatch, getState) => {
   const apiService = getApiService();
 
   const { order } = getState().orders;
+  const { apis } = getState();
 
-    const url = `${apiService.baseUrl}/order`;
+    const url = `${apis.baseUrl}/order`;
     const options = {
         method: 'POST',
         headers: {
@@ -82,10 +84,11 @@ const cancelOrder = () => (dispatch, getState) => {
     const apiService = getApiService();
 
     const { selected } = getState().orders;
+    const { apis } = getState();
 
     const { order_id } = selected;
 
-    const url = `${apiService.baseUrl}/order/cancel/${order_id}`;
+    const url = `${apis.baseUrl}/order/cancel/${order_id}`;
     const options = {
         method: 'PUT',
         headers: {
@@ -114,18 +117,6 @@ const cancelOrder = () => (dispatch, getState) => {
             dispatch(AlertActions.Actions.showSuccess("Order has been cancelled."));
         });
     });
-
-
-};
-
-const deliveryTime = () => (dispatch, getState) => {
-    const orderService = getOrderApiService();
-
-    const { selected } = getState().orders;
-
-    return orderService.deliveryTime(selected.order_id).then(order => {
-        dispatch(Actions.setOrder(order));
-    });
 };
 
 const updateOrder = (order) => (dispatch) => {
@@ -146,7 +137,6 @@ export {
     addToCard,
     cancelOrder,
     removeFromCard,
-    deliveryTime,
     clearCard,
     updateOrder,
     clearOrder

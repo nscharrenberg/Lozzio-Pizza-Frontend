@@ -3,6 +3,7 @@ const historyPath = "/history";
 const checkoutPath = "/checkout";
 const orderIdPath = "/order/:id";
 const orderPath = "/order";
+const apiPath = "/api";
 
 const routes = {
   menuPath,
@@ -10,6 +11,7 @@ const routes = {
   checkoutPath,
   orderIdPath,
   orderPath,
+  apiPath,
 };
 
 export default routes;
