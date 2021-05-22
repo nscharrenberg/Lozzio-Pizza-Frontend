@@ -40,7 +40,7 @@ export const Navbar = ({loading, pizzasInCard}) => {
                     </Typography>
 
                     <Button component={Link} to={routes.menuPath} color="inherit">Menu</Button>
-                    <Button component={Link} to={routes.historyPath} color="inherit">Order History</Button>
+                    <Button component={Link} to={routes.orderPath} color="inherit">Order History</Button>
                     <IconButton component={Link} to={routes.checkoutPath} color="inherit" aria-label="cart">
                         <Badge badgeContent={pizzasInCard.length} color="secondary">
                             <ShoppingCartIcon />

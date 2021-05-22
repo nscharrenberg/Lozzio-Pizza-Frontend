@@ -36,6 +36,9 @@ const useStyles = makeStyles(theme => ({
     delivery: {
         paddingTop: theme.spacing(3),
         paddingBottom: theme.spacing(2)
+    },
+    cancel: {
+        marginLeft: theme.spacing(1)
     }
 }));
 
@@ -168,8 +171,13 @@ export const Order = ({ order, cancel }) => {
                         </div>
                         <Grid container className={classes.delivery}>
                             <Grid item lg={12}>
+                                <Typography variant="h6" align="center">
+                                    Order ID: {order.order_id}
+                                </Typography>
+                            </Grid>
+                            <Grid item lg={12}>
                                 {
-                                    moment(order.delivery_time).isBefore(new Date().setHours(new Date().getHours() + 3)) ? (
+                                    moment(order.delivery_time).isAfter(moment().add(-3, 'hours')) ? (
                                         <Typography variant="h5" align="center">
                                             Expected Delivery <b>{moment(order.delivery_time).fromNow()}</b>
                                         </Typography>
@@ -186,7 +194,7 @@ export const Order = ({ order, cancel }) => {
                                 </Typography>
                             </Grid>
                             <Grid item lg={12}>
-                                <Button variant="contained" color="secondary" onClick={cancel}>
+                                <Button className={classes.cancel} variant="contained" color="secondary" onClick={cancel}>
                                     Cancel Order
                                 </Button>
                             </Grid>

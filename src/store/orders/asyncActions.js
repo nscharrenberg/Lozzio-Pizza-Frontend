@@ -4,32 +4,70 @@ import * as AlertActions from '../alerts';
 import getApiService from "../../services/apiService";
 
 const getOrder = (id) => (dispatch) => {
-    const orderService = getOrderApiService;
+    const apiService = getApiService();
 
-    return orderService.getOrder(id).then(order => {
-        dispatch(Actions.setOrder(order));
+    const url = `${apiService.baseUrl}/order/${id}`;
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    };
 
-        return order;
-    })
+    apiService.request(url, options).then(response => {
+        if (!response.ok) {
+            let message = "Unable to get order";
+
+            if (response.stats === 404) {
+                message = "Order could not be found";
+            }
+
+            throw new Error(message);
+        }
+
+        response.json().then(order => {
+            dispatch(Actions.setOrder(order));
+
+            return order;
+        });
+    });
 };
 
 const makeOrder = () => (dispatch, getState) => {
-  const orderService = getOrderApiService();
+  const apiService = getApiService();
 
   const { order } = getState().orders;
 
-  return orderService.makeOrder(order).then(res => {
-      const { order } = res;
+    const url = `${apiService.baseUrl}/order`;
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(order),
+    };
 
-      dispatch(Actions.makeOrder());
-      dispatch(Actions.setOrder(order));
+    apiService.request(url, options).then(response => {
+        if (!response.ok) {
+            let message = "Unable to place order";
+            if (response.status === 400) {
+                message = "The format of the object is not valid";
+            }
 
-      dispatch(AlertActions.Actions.showSuccess("Order has been created."));
+            dispatch(AlertActions.Actions.showError(message));
+        }
 
-      return order;
-  }).catch(err => {
-      dispatch(AlertActions.Actions.showError("Unable to place order."));
-  });
+        return response.json().then(res => {
+            const { order } = res;
+
+            dispatch(Actions.makeOrder());
+            dispatch(Actions.setOrder(order));
+
+            dispatch(AlertActions.Actions.showSuccess("Order has been created."));
+
+            return order;
+        });
+    })
 };
 
 const addToCard = (pizza) => (dispatch) => {
@@ -98,6 +136,10 @@ const clearCard = () => (dispatch) => {
     dispatch(Actions.clearCard());
 };
 
+const clearOrder = () => (dispatch) => {
+    dispatch(Actions.clearOrder());
+};
+
 export {
     getOrder,
     makeOrder,
@@ -106,5 +148,6 @@ export {
     removeFromCard,
     deliveryTime,
     clearCard,
-    updateOrder
+    updateOrder,
+    clearOrder
 };

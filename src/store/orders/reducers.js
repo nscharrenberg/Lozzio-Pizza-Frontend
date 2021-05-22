@@ -68,6 +68,11 @@ const reducer = (state = initialState, { type, payload }) => {
             };
         case Types.RESET:
             return initialState;
+        case Types.CLEAR_ORDER:
+            return {
+                ...state,
+                selected: undefined,
+            };
         default:
             return state;
     }
