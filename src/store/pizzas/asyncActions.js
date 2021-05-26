@@ -1,4 +1,3 @@
-import { getPizzaApiService } from "../../services";
 import * as Actions from './actions';
 import getApiService from "../../services/apiService";
 

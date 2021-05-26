@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import {OrderActions} from "../../store";
 import Paper from "@material-ui/core/Paper";
@@ -13,9 +13,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
-import IconButton from "@material-ui/core/IconButton";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
-import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 import TableContainer from "@material-ui/core/TableContainer";
 import Button from "@material-ui/core/Button";
 
@@ -44,10 +41,6 @@ const useStyles = makeStyles(theme => ({
 
 export const Order = ({ order, cancel }) => {
     const classes = useStyles();
-
-    const onCancel = () => {
-      cancel();
-    };
 
     return (
         <Paper>

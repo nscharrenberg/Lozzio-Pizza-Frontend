@@ -1,15 +1,12 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
-import {OrderActions, PizzaActions} from "../../store";
+import {OrderActions} from "../../store";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import Order from "../../components/orders/Order";
 import {
     useHistory,
-    useParams
 } from "react-router-dom";
-import {isNil} from "ramda";
 import SearchIcon from '@material-ui/icons/Search';
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";

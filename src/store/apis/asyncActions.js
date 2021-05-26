@@ -1,4 +1,3 @@
-import { getPizzaApiService } from "../../services";
 import * as Actions from './actions';
 
 const changeUrl = (url) => (dispatch) => {

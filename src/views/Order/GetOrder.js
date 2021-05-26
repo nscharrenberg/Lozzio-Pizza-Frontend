@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import {OrderActions, PizzaActions} from "../../store";
-import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Order from "../../components/orders/Order";
 import {

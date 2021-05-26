@@ -12,7 +12,6 @@ import IconButton from "@material-ui/core/IconButton";
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import {OrderActions} from "../../store";
-import TableFooter from '@material-ui/core/TableFooter';
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({

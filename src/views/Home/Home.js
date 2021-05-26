@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import {OrderActions, PizzaActions} from "../../store";
 import Typography from "@material-ui/core/Typography";
-import ShoppingCart from "../../components/checkout/ShoppingCart";
 import PizzaOverview from "../../components/pizzas/Overview";
 import Container from "@material-ui/core/Container";
 

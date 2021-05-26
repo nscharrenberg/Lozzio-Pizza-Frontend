@@ -3,11 +3,6 @@ import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import {OrderActions, PizzaActions} from "../../store";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import EcoIcon from '@material-ui/icons/Eco';
-import { green } from '@material-ui/core/colors';
-import Chip from "@material-ui/core/Chip";
-import ShoppingCart from "../../components/checkout/ShoppingCart";
 import PizzaOverview from "../../components/pizzas/Overview";
 
 const useStyles = makeStyles(theme => ({
