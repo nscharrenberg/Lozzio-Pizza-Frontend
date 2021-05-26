@@ -1,7 +1,5 @@
-import getPizzaApiService from "./pizzaApiService";
-import getOrderApiService from "./orderApiService";
+import getApiService from "./apiService";
 
 export {
-    getPizzaApiService,
-    getOrderApiService
+    getApiService
 }

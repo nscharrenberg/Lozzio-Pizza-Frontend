@@ -60,14 +60,18 @@ const makeOrder = () => (dispatch, getState) => {
         }
 
         return response.json().then(res => {
-            const { order } = res;
+            const { order, delivery_time, ordered_at } = res;
+
+            let formattedOrder = order;
+            formattedOrder.delivery_time = delivery_time;
+            formattedOrder.ordered_at = ordered_at;
 
             dispatch(Actions.makeOrder());
-            dispatch(Actions.setOrder(order));
+            dispatch(Actions.setOrder(formattedOrder));
 
             dispatch(AlertActions.Actions.showSuccess("Order has been created."));
 
-            return order;
+            return formattedOrder;
         });
     })
 };
