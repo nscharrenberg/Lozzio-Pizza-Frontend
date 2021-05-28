@@ -2,7 +2,7 @@ import Types from './types';
 
 const initialState = {
     order: {
-        customer_id: 69420,
+        customer_id: 1234,
         takeaway: false,
         payment_type: "cash",
         delivery_address: {

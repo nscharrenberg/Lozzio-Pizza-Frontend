@@ -27,6 +27,10 @@ const getOrder = (id) => (dispatch, getState) => {
         }
 
         response.json().then(order => {
+            if (Array.isArray(order)) {
+                order = order[0];
+            }
+
             dispatch(Actions.setOrder(order));
 
             return order;
