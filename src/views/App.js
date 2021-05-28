@@ -12,14 +12,14 @@ import ErrorBoundary from "../utils/ErrorBoundary";
 const App = () => (
     <BrowserRouter>
         <CssBaseline/>
-        <ErrorBoundary>
             <div className="app">
                 <Navbar/>
+                <ErrorBoundary>
                 <Router/>
                 <Alerts/>
+                </ErrorBoundary>
                 <ChangeApi/>
             </div>
-        </ErrorBoundary>
     </BrowserRouter>
 )
 

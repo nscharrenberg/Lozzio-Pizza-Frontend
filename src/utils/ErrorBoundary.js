@@ -18,7 +18,7 @@ class ErrorBoundary extends React.Component {
         if (this.state.hasError) {
             return (
                 <div>
-                    <h1>Meteorite Explorer encountered an error! Oh My!</h1>
+                    <h1>Something wen't wrong, please try again.</h1>
                 </div>
             );
         }

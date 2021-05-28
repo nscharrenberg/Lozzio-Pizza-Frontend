@@ -154,7 +154,7 @@ export const Order = ({ order, cancel }) => {
                                                         {pizza.name}
                                                     </TableCell>
                                                     <TableCell align="right">{pizza.vegetarian ? 'Yes' : 'No'}</TableCell>
-                                                    <TableCell align="right">{pizza.price.toFixed(2)}</TableCell>
+                                                    <TableCell align="right">{pizza.price ? pizza.price.toFixed(2) : null}</TableCell>
                                                 </TableRow>
                                             ))}
                                         </TableBody>
